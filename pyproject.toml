@@ -1,21 +1,15 @@
 [project]
-name = "trader-joes-calories"
+name = "tallying-joules"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "altair",
-    "beautifulsoup4>=4.13.4",
-    "lxml>=5.4.0",
-    "pandas>=2.3.0",
-    "polars>=1.30.0",
-    "pyarrow>=20.0.0",
-    "requests>=2.32.3",
-    "selenium>=4.33.0",
-]
-
-[dependency-groups]
-dev = [
-    "ipykernel>=6.29.5",
+    "altair>=5.5.0",
+    "beautifulsoup4>=4.13.5",
+    "lxml>=6.0.1",
+    "pandas>=2.3.2",
+    "polars>=1.33.0",
+    "requests>=2.32.5",
+    "selenium>=4.35.0",
 ]
