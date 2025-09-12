@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Junk
+scraper_scratch.ipynb
