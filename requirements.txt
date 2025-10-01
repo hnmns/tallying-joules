@@ -6,3 +6,4 @@ polars
 # ipykernel
 pandas
 altair
+vl-convert-python

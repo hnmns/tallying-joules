@@ -8,3 +8,5 @@ Currently,
 * `tj_streamlit.py` is where I am trying out Streamlit to make a quick way to view 
 
 In my next updates, I want to make the Streamlit app interactive, allowing you to select how much of the full grocery product data set you see on each of the charts (e.g. bar chart of the top *n* most protein-dense products, scatter plot of the top *n* most calorie-filled products).
+
+[A chart of all in-stock products and their calories + price](figures/tj_calore_scatter.html)
