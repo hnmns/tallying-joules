@@ -7,4 +7,3 @@ polars
 pandas
 altair
 vl-convert-python
-altair_saver
