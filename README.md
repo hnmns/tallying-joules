@@ -9,9 +9,13 @@ Currently,
 
 In my next updates, I want to make the Streamlit app interactive, allowing you to select how much of the full grocery product data set you see on each of the charts (e.g. bar chart of the top *n* most protein-dense products, scatter plot of the top *n* most calorie-filled products).
 
+TODO
+* Data validation/sanity checking for cases when the price of a single granola bar is assigned to a box of 10, for example.
+* Cache, pre-clean dataframes for the 2-3 charts I want to do under `notes/viz-ideas.md`
+
 ![A chart of all in-stock products and their calories + price](figures/Screenclip_scatterplot.png "")
 
 
 ### To run streamlit demo
-1. .venv\Scripts\activate
-2. streamlit run .\tj_streamlit.py
+1. `.venv\Scripts\activate`
+2. `streamlit run .\tj_streamlit.py`

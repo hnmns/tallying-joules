@@ -1,5 +1,6 @@
 import streamlit as st
 import polars as pl
+import pandas as pd
 import altair as alt
 from textwrap import wrap
 
@@ -26,7 +27,6 @@ Here are a couple charts that give a high-level overview of what was in stock wh
 """
 
 cols = st.columns(1)
-
 with cols[0].container(border=True, height='stretch'):
     num_points_default = 10
 
@@ -59,10 +59,13 @@ with cols[0].container(border=True, height='stretch'):
     )
     calorie_density_bar
 
-cols = st.columns(1)
 
-with cols[0].container(border=True, height="stretch"):
-    "### Dollar value of total calories in in-stock TJ\'s food items"
+
+
+cols = st.columns([3,1])
+with cols[0].container(border=True, width="stretch", height="stretch"):
+    "### Dollar value of total calories in in-stock TJ's food items "
+    slope = (tjhp_clean_instock['calories_per_container'] / tjhp_clean_instock['price_usd']).mean()
 
     tj_calorie_scatter = alt.Chart(tjhp_clean_instock).mark_point(
         filled=True, stroke='black', strokeWidth=0.25, size=50
@@ -70,19 +73,46 @@ with cols[0].container(border=True, height="stretch"):
             x=alt.X('price_usd', title='Price (USD)', axis=alt.Axis(format='.2f')),
             y=alt.Y('calories_per_container', title="Calories per Container"),
             opacity=alt.value(0.5),
-            color=alt.Color(
-                'protein_per_container', title="Protein per Container"
-                ).scale(
-                    scheme="oranges"
-                ).legend(
-                    orient='right',
-                    direction='vertical'),
+            color=alt.when(
+                (alt.datum.calories_per_container / alt.datum.price_usd)>slope
+            ).then(alt.value("steelblue")).otherwise(alt.value("orange")),
             tooltip=['sku', 'name', 'price_usd', 'calories_per_container', 'calories_per_dollar', 'protein_per_container', 'servings_per_container']
         )
-    tj_calorie_scatter
+    
+    # intercept = 0 # proportional, necessarily
+    xy_ranges = pd.DataFrame(
+        {
+            'price_usd': range(0, 2+int(tjhp_clean_instock['price_usd'].max())),
+        }
+    )
+    xy_ranges['calories_per_container'] = slope * xy_ranges['price_usd']
+    formula_line = alt.Chart(xy_ranges).mark_line(color='blue').encode(
+        x=alt.X('price_usd'),
+        y=alt.Y('calories_per_container')
+    )
 
+    formula_line + tj_calorie_scatter
 
-cols = st.columns(1)
+# cols = st.columns(1)
+# with cols[0].container(border=True, height="stretch"):
+#     "### Dollar value of total calories in in-stock TJ\'s food items"
+
+#     tj_calorie_scatter = alt.Chart(tjhp_clean_instock).mark_point(
+#         filled=True, stroke='black', strokeWidth=0.25, size=50
+#         ).encode(
+#             x=alt.X('price_usd', title='Price (USD)', axis=alt.Axis(format='.2f')),
+#             y=alt.Y('calories_per_container', title="Calories per Container"),
+#             opacity=alt.value(0.5),
+#             color=alt.Color(
+#                 'protein_per_container', title="Protein per Container"
+#                 ).scale(
+#                     scheme="oranges"
+#                 ).legend(
+#                     orient='right',
+#                     direction='vertical'),
+#             tooltip=['sku', 'name', 'price_usd', 'calories_per_container', 'calories_per_dollar', 'protein_per_container', 'servings_per_container']
+#         )
+#     tj_calorie_scatter
 
 
 ""
