@@ -9,5 +9,6 @@ wheels/
 # Virtual environments
 .venv
 
-# Junk
+# Scratchwork
 scraper_scratch.ipynb
+tj_api_scratchwork.ipynb

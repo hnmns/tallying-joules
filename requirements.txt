@@ -1,9 +1,0 @@
-beautifulsoup4
-requests
-lxml
-selenium
-polars
-# ipykernel
-pandas
-altair
-vl-convert-python

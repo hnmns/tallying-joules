@@ -1,5 +1,7 @@
 ## Tallying Joules
 
+**UPDATE**: My code now hits a 403 error when trying to access TJ's GraphQL API. It appears that the grocery item database is no longer open to all comers. I will have to get by with what I saved in 2025.
+
 Inspired by [cmoog](https://github.com/cmoog/traderjoes)'s price tracker, this project combines one grocery store's product nutrition and price data to figure the most dollar-efficient way to purchase protein and calories.
 
 Currently, 
@@ -17,5 +19,6 @@ TODO
 
 
 ### To run streamlit demo
-1. `.venv\Scripts\activate`
-2. `streamlit run .\tj_streamlit.py`
+Activate the virtual environment: `.venv\Scripts\activate`
+
+Then `streamlit run .\tj_streamlit.py`
